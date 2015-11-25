@@ -1,0 +1,10 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:SoundEffector="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/menu_write"
+        android:showAsAction="always"
+        android:title="@string/menu_write"/>
+    <item
+        android:id="@+id/menu_refresh"
+        android:title="@string/menu_refresh"/>
+</menu>

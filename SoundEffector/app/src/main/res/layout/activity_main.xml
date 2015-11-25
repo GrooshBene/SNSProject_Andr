@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="15dp"
+    android:weightSum="10">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:layout_weight="3"
+        android:id="@+id/mTextView"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_weight="7"
+        android:weightSum="10"
+        android:orientation="vertical">
+        <EditText
+            android:singleLine="true"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_weight="1.5"
+            android:hint="ID"
+            android:id="@+id/mIdEdit"
+            />
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_weight="1"/>
+        <EditText
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_weight="1.5"
+        android:hint="PW"
+        android:id="@+id/mPwEdit"
+            android:singleLine="true"
+            android:inputType="textPassword"
+        />
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_weight="1"/>
+        <Button
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+            android:layout_weight="1.5"
+        android:layout_margin="30dp"
+        android:text="JSON 가져오기"
+        android:id="@+id/mButton"></Button>
+    </LinearLayout>
+
+
+
+</LinearLayout>

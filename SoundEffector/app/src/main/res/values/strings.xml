@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">SNSProject</string>
+    <string name="menu_refresh">Refresh</string>
+    <string name="menu_write">A</string>
+</resources>
