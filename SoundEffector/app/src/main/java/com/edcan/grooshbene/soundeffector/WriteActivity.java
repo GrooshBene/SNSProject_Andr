@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.EditText;
@@ -48,7 +49,8 @@ public class WriteActivity extends Activity {
             public void onClick(View v) {
                 String date = String.valueOf(new Date());
                 String user_name = getPreferences();
-                uploadArticle(mEditText.getText().toString(), date,user_name);
+                Log.e("username", user_name);
+                uploadArticle(mEditText.getText().toString(), date, user_name);
             }
         });
    }
@@ -63,7 +65,7 @@ public class WriteActivity extends Activity {
     }
 
     public String getPreferences(){
-        pref = getSharedPreferences("pref", MODE_PRIVATE);
+        pref = getSharedPreferences("pref", 1);
         String ret = pref.getString("user_name", "");
         return ret;
     }

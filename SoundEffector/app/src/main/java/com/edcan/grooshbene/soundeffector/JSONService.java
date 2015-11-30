@@ -26,4 +26,8 @@ public interface JSONService {
     @POST("/articlemake")
     Call<Article> makeArticle(@Field("text") String text, @Field("user_name") String Username, @Field("article_time") String time);
 
+    @FormUrlEncoded
+    @POST("/signin")
+    Call<User> signin(@Field("id") String username, @Field("pw") String password, @Field("name") String name);
+
 }

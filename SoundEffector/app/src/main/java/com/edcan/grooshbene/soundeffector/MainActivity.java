@@ -1,6 +1,7 @@
 package com.edcan.grooshbene.soundeffector;
 
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -10,6 +11,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,7 +31,7 @@ import retrofit.Retrofit;
 public class MainActivity extends ActionBarActivity {
 
     Button mButton;
-    TextView mTextView;
+    LinearLayout mTextView;
     ProgressDialog mProgressDialog;
     Retrofit retrofit;
     EditText mIdEdit, mPwEdit;
@@ -41,8 +43,8 @@ public class MainActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        mTextView = (LinearLayout)findViewById(R.id.mTextView);
         mButton = (Button)findViewById(R.id.mButton);
-        mTextView = (TextView)findViewById(R.id.mTextView);
         mProgressDialog = new ProgressDialog(MainActivity.this);
         mIdEdit = (EditText)findViewById(R.id.mIdEdit);
         mPwEdit = (EditText)findViewById(R.id.mPwEdit);
@@ -50,11 +52,20 @@ public class MainActivity extends ActionBarActivity {
         retrofit = new Retrofit.Builder().baseUrl("http://grooshbene.milkgun.kr").addConverterFactory(GsonConverterFactory.create()).build();
 
         final JSONService service = retrofit.create(JSONService.class);
+
+        mTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, SigninActivity.class);
+                startActivity(intent);
+            }
+        });
+
         mButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 mProgressDialog = new ProgressDialog( MainActivity.this );
-                mProgressDialog.setMessage("Please wait.....");
+                mProgressDialog.setMessage("잠시만 기다려주세요.....");
                 mProgressDialog.show();
 
                 final Call<User> call = service.login(mIdEdit.getText().toString(),mPwEdit.getText().toString());
@@ -64,7 +75,7 @@ public class MainActivity extends ActionBarActivity {
                         mProgressDialog.dismiss();
                         if(response.code()==200){
                             User user = response.body();
-                            Log.e("asdf","Success");
+                            Log.e("asdf",user.user_name);
 //                            List<User.Article> articles = response.body().article;
 //                            for(User.Article article : articles){
 //                                Log.e("sex", article.title);
@@ -97,19 +108,19 @@ public class MainActivity extends ActionBarActivity {
     }
 
     public void getPreferences(){
-        pref = getSharedPreferences("pref", MODE_PRIVATE);
+        pref = getSharedPreferences("pref", 1);
         pref.getString("user_name", "");
     }
 
     public void savePreferences(String user_name){
-        pref = getSharedPreferences("pref", MODE_PRIVATE);
+        pref = getSharedPreferences("pref", 1);
         edit = pref.edit();
         edit.putString("user_name", user_name);
         edit.commit();
     }
 
     public void removePreferences(){
-        pref = getSharedPreferences("pref", MODE_PRIVATE);
+        pref = getSharedPreferences("pref", 1);
         edit = pref.edit();
         edit.remove("user_name");
         edit.commit();
